@@ -9,5 +9,9 @@ class Development:
     JWT_SECRET=os.getenv("JWT_SECRET")
     KEY=os.getenv("KEY")
     FIREBASE_PATH= os.getenv("FIREBASE_PATH")
+    # DB_HOST = os.getenv('DB_HOST')
+    # DB_USER = os.getenv('DB_USER')
+    # DB_PASS = os.getenv('DB_PASS')
+    # DB_NAME = os.getenv('DB_NAME')
  
     

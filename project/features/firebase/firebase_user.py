@@ -11,16 +11,21 @@ def get_user_by_id(user_id):
    return None
 def list_all_users():
     users = []
+    page_number = 0
     page = auth.list_users()  # Get the first page of users
     while page:
+        page_number += 1
+        print(f"Processing page {page_number}")
         for user in page.users:
             users.append({
                 "uid": user.uid,
                 "email": user.email,
             })
-        # Get the next page
         page = page.get_next_page()
+    print(f"Total users retrieved: {len(users)}")
     return users
+
+
 def create_user(validated_data):
     user = auth.create_user(
         email=validated_data.email,
@@ -30,3 +35,9 @@ def create_user(validated_data):
         "uid": user.uid,
         "email": user.email
     }
+def delete_user(user_id):
+    try:
+      auth.delete_user(user_id)
+    except auth.UserNotFoundError:
+        raise Exception(f"User with UID {user_id} not found.")
+ 
